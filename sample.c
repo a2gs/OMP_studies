@@ -25,6 +25,9 @@ int main(int argc, char *argv[])
 	int i = 0;
 	int nthreads = 0, tid = 0;
 
+	/* #pragma omp parallel num_threads(3) */
+	/* omp_set_num_threads(2); */
+
 	dumpEnviroment();
 
 	#pragma omp parallel for

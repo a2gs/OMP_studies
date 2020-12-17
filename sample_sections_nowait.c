@@ -2,13 +2,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <omp.h>
 
 #include "openmp_util.h"
 
 int main(int argc, char *argv[])
 {
+	/* #pragma omp parallel num_threads(3) */
+	omp_set_num_threads(2);
 
 	dumpEnviroment();
 
@@ -21,24 +22,23 @@ int main(int argc, char *argv[])
 
 			#pragma omp section
 			{
-				printf("Start section a (sleep)\n");
-				function_a();
-				sleep(1);
-				printf("Start section a\n\n");
+				DEBUG(printf("Start section a (sleep)\n");)
+				function_a(1);
+				DEBUG(printf("Start section a\n\n");)
 			}
 
 			#pragma omp section
 			{
-				printf("Start section b\n");
-				function_b();
-				printf("End section b\n\n");
+				DEBUG(printf("Start section b\n");)
+				function_b(0);
+				DEBUG(printf("End section b\n\n");)
 			}
 
 			#pragma omp section
 			{
-				printf("Start section c\n");
-				function_c();
-				printf("End section c\n\n");
+				DEBUG(printf("Start section c\n");)
+				function_c(3);
+				DEBUG(printf("End section c\n\n");)
 			}
 
 		/* NO implicit barrier here */
@@ -48,6 +48,8 @@ int main(int argc, char *argv[])
 
 	/* Implicit barrier here */
 	}
+
+	function_d(4);
 
 	printf("End 2.\n");
 

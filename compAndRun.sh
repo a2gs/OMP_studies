@@ -63,8 +63,8 @@ if [ -n "$1" ]; then
 else
 
 	echo -e "Usage:"
-	echo -e "source ${BASH_SOURCE[0]} 0\n\tClean project\n"
-	echo -e "source ${BASH_SOURCE[0]} 1\n\tCompile project\n"
-	echo -e "source ${BASH_SOURCE[0]} 01\n\tClean and compile project\n"
+	echo -e "source ./${BASH_SOURCE[0]} 0\n\tClean project\n"
+	echo -e "source ./${BASH_SOURCE[0]} 1\n\tCompile project\n"
+	echo -e "source ./${BASH_SOURCE[0]} 01\n\tClean and compile project\n"
 
 fi

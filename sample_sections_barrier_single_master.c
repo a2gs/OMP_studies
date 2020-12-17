@@ -9,6 +9,8 @@
 
 int main(int argc, char *argv[])
 {
+	/* #pragma omp parallel num_threads(3) */
+	/* omp_set_num_threads(2); */
 
 	dumpEnviroment();
 
@@ -17,31 +19,33 @@ int main(int argc, char *argv[])
 	#pragma omp parallel
 	{
 
-		printf("Start section a\n");
-		function_a();
-		printf("Start section a\n\n");
+		DEBUG(printf("Start section a\n");)
+		function_a(0);
+		DEBUG(printf("Start section a\n\n");)
 
-		printf("Start section b (sleep)\n");
-		function_b();
-		sleep(1);
-		printf("End section b\n\n");
+		DEBUG(printf("Start section b (sleep)\n");)
+		function_b(1);
+		DEBUG(printf("End section b\n\n");)
 
-		#pragma omp barrier /* Explicit barrier */
+		/* Explicit barrier */
+		#pragma omp barrier
 
+		/* Only one thread will run this */
 		#pragma omp single
 			printf("-----------------------------\n");
 
-		printf("Start section c\n");
-		function_c();
-		printf("End section c\n\n");
+		DEBUG(printf("Start section c\n");)
+		function_c(0);
+		DEBUG(printf("End section c\n\n");)
 
 		#pragma omp single
 		{
-			printf("Start section d\n");
-			function_d();
-			printf("End section d\n\n");
+			DEBUG(printf("Start section d\n");)
+			function_d(0);
+			DEBUG(printf("End section d\n\n");)
 		}
 
+		/* Only master (0) thread will run this */
 		#pragma omp master
 		{
 			printf("Only master thread print this. Thread Id: [%d]\n", omp_get_thread_num());

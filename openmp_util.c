@@ -1,28 +1,45 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <omp.h>
 
-int function_a(void)
+int function_a(int x)
 {
-	printf("Inside function a. Thread Id: [%d]\n", omp_get_thread_num());
+	printf("A: Inside function A (sleep: [%d]). Thread Id: [%d]\n", x, omp_get_thread_num());
+
+	if(x != 0)
+		sleep(x);
+
 	return(0);
 }
 
-int function_b(void)
+int function_b(int x)
 {
-	printf("Inside function b. Thread Id: [%d]\n", omp_get_thread_num());
+	printf("B: Inside function B (sleep: [%d]). Thread Id: [%d]\n", x, omp_get_thread_num());
+
+	if(x != 0)
+		sleep(x);
+
 	return(0);
 }
 
-int function_c(void)
+int function_c(int x)
 {
-	printf("Inside function c. Thread Id: [%d]\n", omp_get_thread_num());
+	printf("C: Inside function C (sleep: [%d]). Thread Id: [%d]\n", x, omp_get_thread_num());
+
+	if(x != 0)
+		sleep(x);
+
 	return(0);
 }
 
-int function_d(void)
+int function_d(int x)
 {
-	printf("Inside function d. Thread Id: [%d]\n", omp_get_thread_num());
+	printf("D: Inside function D (sleep: [%d]). Thread Id: [%d]\n", x, omp_get_thread_num());
+
+	if(x != 0)
+		sleep(x);
+
 	return(0);
 }
 
