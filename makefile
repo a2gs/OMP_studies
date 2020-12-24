@@ -31,9 +31,10 @@ exectag:
 	$(CC) -o sample_sections_nowait sample_sections_nowait.c openmp_util.c $(CFLAGS) $(INCLUDEPATH) $(LIBPATH) $(LIBS)
 	$(CC) -o sample_for_critical sample_for_critical.c openmp_util.c $(CFLAGS) $(INCLUDEPATH) $(LIBPATH) $(LIBS)
 	$(CC) -o sample_ordered sample_ordered.c openmp_util.c $(CFLAGS) $(INCLUDEPATH) $(LIBPATH) $(LIBS)
+	$(CC) -o sample_shared_private sample_shared_private.c openmp_util.c $(CFLAGS) $(INCLUDEPATH) $(LIBPATH) $(LIBS)
 
 clean:
 	@echo
 	@echo "=== clean_data =============="
-	-$(RM) sample_sections_barrier sample_sections_barrier_single_master sample_sections_nowait sample_for_critical sample_barrier_master sample_ordered
+	-$(RM) sample_sections_barrier sample_sections_barrier_single_master sample_sections_nowait sample_for_critical sample_barrier_master sample_ordered sample_shared_private
 	-$(RM) sample core *.o
